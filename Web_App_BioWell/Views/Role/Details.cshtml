@@ -1,7 +1,16 @@
 ﻿@model Web_App_BioWell.Models.RoleViewModel
 
-@{
+@if (this.User.IsInRole("Admin"))
+{
+
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+else
+{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Details</h2>

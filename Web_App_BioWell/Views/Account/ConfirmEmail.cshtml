@@ -1,5 +1,14 @@
-﻿@{
+﻿@if (this.User.IsInRole("Admin"))
+{
+
     ViewBag.Title = "Confirm Email";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+else
+{
+    ViewBag.Title = "Confirm Email";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>@ViewBag.Title.</h2>

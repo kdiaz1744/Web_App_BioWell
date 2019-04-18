@@ -1,5 +1,14 @@
-﻿@{
+﻿@if (this.User.IsInRole("Admin"))
+{
+
     ViewBag.Title = "Login Failure";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+else
+{
+    ViewBag.Title = "Login Failure";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <hgroup>

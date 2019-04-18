@@ -2,6 +2,19 @@
     ViewBag.Title = "Home Page";
 }
 
+@if (this.User.IsInRole("Admin"))
+{
+
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+else
+{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
 <div class="jumbotron">
     <h1>BioWell Application</h1>
     <p class="lead">

@@ -1,16 +1,25 @@
 ﻿@model Web_App_BioWell.Models.PatientsModel
 
-@{
+@if (this.User.IsInRole("Admin"))
+{
+
     ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+else
+{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>PatientsModel</h4>
         <hr />

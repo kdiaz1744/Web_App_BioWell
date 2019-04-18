@@ -1,7 +1,16 @@
 ﻿@model IEnumerable<Web_App_BioWell.Models.PatientsModel>
 
-@{
-    ViewBag.Title = "Index";
+@if (this.User.IsInRole("Admin"))
+{
+
+    ViewBag.Title = "Patient List";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+else
+{
+    ViewBag.Title = "Patient List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
@@ -29,29 +38,30 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PatientID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PatientID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PatientID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PatientID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.PatientID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PatientID })
+            </td>
+        </tr>
+    }
 
 </table>

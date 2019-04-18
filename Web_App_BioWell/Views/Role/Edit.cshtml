@@ -1,7 +1,16 @@
 ﻿@model Web_App_BioWell.Models.RoleViewModel
 
-@{
+@if (this.User.IsInRole("Admin"))
+{
+
     ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+else
+{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Edit</h2>
@@ -9,7 +18,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>RoleViewModel</h4>
         <hr />
