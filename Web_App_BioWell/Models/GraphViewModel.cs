@@ -9,6 +9,10 @@
 
 using System;
 using System.Runtime.Serialization;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
 
 namespace Web_App_BioWell.Models
 {
@@ -30,28 +34,20 @@ namespace Web_App_BioWell.Models
         //Explicitly setting the name to be used while serializing to JSON.
         [DataMember(Name = "y")]
         public Nullable<double> Y = null;
+    }
 
+    public class HealthData
+    {
+        [Key]
+        public int DataId { get; set; }
 
+        public string PatientId { get; set; }
 
+        public DateTime DataDate { get; set; }
 
-        ////-------------------Bar Type Graph---------------------
-        ////DataContract for Serializing Data - required to serve in JSON format
-        //[DataContract]
-        //public class DataPoint
-        //{
-        //    public DataPoint(string label, double y)
-        //    {
-        //        this.Label = label;
-        //        this.Y = y;
-        //    }
+        public double DataWeight { get; set; }
 
-        //    //Explicitly setting the name to be used while serializing to JSON.
-        //    [DataMember(Name = "label")]
-        //    public string Label = "";
+        public double DataBmi { get; set; }
 
-        //    //Explicitly setting the name to be used while serializing to JSON.
-        //    [DataMember(Name = "y")]
-        //    public Nullable<double> Y = null;
-        //}
     }
 }

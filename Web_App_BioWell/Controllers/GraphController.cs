@@ -1,22 +1,4 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Web;
-//using System.Web.Mvc;
-
-//namespace Web_App_BioWell.Controllers
-//{
-//    public class GraphController : Controller
-//    {
-//        // GET: Graph
-//        public ActionResult Index()
-//        {
-//            return View();
-//        }
-//    }
-//}
-
-using Web_App_BioWell.Models;
+﻿using Web_App_BioWell.Models;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Web.Mvc;
@@ -39,8 +21,16 @@ namespace Web_App_BioWell.Controllers
         {
             List<DataPoint> dataPoints = new List<DataPoint>();
 
+            /*The JavaScript date is based on a time value that is milliseconds since 
+             midnight January 1, 1970, UTC.
+             * A day holds 86,400,000 milliseconds.
+             December 17th,2018 is 1545071400000*/
 
-            dataPoints.Add(new DataPoint(1481999400000, 280));
+            //double x = 1481999400000;
+            //double y = 86400000;
+            //dataPoints.Add(new DataPoint(x + y, 280));
+
+            dataPoints.Add(new DataPoint(1481999400000, 290));
             dataPoints.Add(new DataPoint(1482604200000, 290));
             dataPoints.Add(new DataPoint(1483209000000, 286));
             dataPoints.Add(new DataPoint(1483813800000, 287));
@@ -100,26 +90,6 @@ namespace Web_App_BioWell.Controllers
             return Content(JsonConvert.SerializeObject(dataPoints, _jsonSetting), "application/json");
         }
     }
+    //---------- Graph Controller ends --------------
 
-    //    //-----------------------Bar Type Graph---------------------------
-    //    public class GraphController : Controller
-    //    {
-    //        // GET: Home
-    //        public ActionResult Index()
-    //        {
-    //            List<DataPoint> dataPoints = new List<DataPoint>();
-
-    //            dataPoints.Add(new DataPoint("Albert", 10));
-    //            dataPoints.Add(new DataPoint("Tim", 30));
-    //            dataPoints.Add(new DataPoint("Wilson", 17));
-    //            dataPoints.Add(new DataPoint("Joseph", 39));
-    //            dataPoints.Add(new DataPoint("Robert", 30));
-    //            dataPoints.Add(new DataPoint("Sophia", 25));
-    //            dataPoints.Add(new DataPoint("Emma", 15));
-
-    //            ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
-
-    //            return View();
-    //        }
-    //    }
 }

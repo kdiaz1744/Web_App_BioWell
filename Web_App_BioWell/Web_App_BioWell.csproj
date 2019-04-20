@@ -49,6 +49,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Web.DynamicData" />
@@ -57,6 +60,12 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.4\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.4\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Windows.Forms.DataVisualization.Design" />
@@ -209,6 +218,18 @@
     <Compile Include="Migrations\201904111509389_roleEndMaybe.Designer.cs">
       <DependentUpon>201904111509389_roleEndMaybe.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904200020194_data3.cs" />
+    <Compile Include="Migrations\201904200020194_data3.Designer.cs">
+      <DependentUpon>201904200020194_data3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904200024484_data4.cs" />
+    <Compile Include="Migrations\201904200024484_data4.Designer.cs">
+      <DependentUpon>201904200024484_data4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904200041042_data5.cs" />
+    <Compile Include="Migrations\201904200041042_data5.Designer.cs">
+      <DependentUpon>201904200041042_data5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\GraphViewModel.cs" />
@@ -326,6 +347,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904111509389_roleEndMaybe.resx">
       <DependentUpon>201904111509389_roleEndMaybe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904200020194_data3.resx">
+      <DependentUpon>201904200020194_data3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904200024484_data4.resx">
+      <DependentUpon>201904200024484_data4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904200041042_data5.resx">
+      <DependentUpon>201904200041042_data5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

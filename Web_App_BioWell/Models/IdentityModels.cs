@@ -40,6 +40,7 @@ namespace Web_App_BioWell.Models
 
         // Initialize Tables Created from Code First Migrations (Models)
         public DbSet<PatientsModel> Patients { get; set; }
+        public DbSet<HealthData> HealthData { get; set; }
         public DbSet<MessagesModel> Messages { get; set; }
        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
