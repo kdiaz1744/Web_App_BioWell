@@ -21,7 +21,7 @@ namespace Web_App_BioWell.Models
     [DataContract]
     public class DataPoint
     {
-        public DataPoint(double x, double y)
+        public DataPoint(DateTime x, double y)
         {
             this.X = x;
             this.Y = y;
@@ -29,7 +29,7 @@ namespace Web_App_BioWell.Models
 
         //Explicitly setting the name to be used while serializing to JSON.
         [DataMember(Name = "x")]
-        public Nullable<double> X = null;
+        public Nullable<DateTime> X = null;
 
         //Explicitly setting the name to be used while serializing to JSON.
         [DataMember(Name = "y")]
@@ -43,10 +43,13 @@ namespace Web_App_BioWell.Models
 
         public string PatientId { get; set; }
 
+        [Display(Name = "Date")]
         public DateTime DataDate { get; set; }
 
+        [Display(Name = "Weight")]
         public double DataWeight { get; set; }
 
+        [Display(Name = "BMI")]
         public double DataBmi { get; set; }
 
     }

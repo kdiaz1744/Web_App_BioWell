@@ -1,0 +1,16 @@
+﻿
+@if (this.User.IsInRole("Admin"))
+{
+
+    ViewBag.Title = "Graph";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+else
+{
+    ViewBag.Title = "Graph";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Graph</h2>
+

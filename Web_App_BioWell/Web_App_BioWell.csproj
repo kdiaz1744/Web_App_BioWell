@@ -190,6 +190,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\GraphController.cs" />
+    <Compile Include="Controllers\HealthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
@@ -229,6 +230,10 @@
     <Compile Include="Migrations\201904200041042_data5.cs" />
     <Compile Include="Migrations\201904200041042_data5.Designer.cs">
       <DependentUpon>201904200041042_data5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904200104528_data6.cs" />
+    <Compile Include="Migrations\201904200104528_data6.Designer.cs">
+      <DependentUpon>201904200104528_data6.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -314,6 +319,12 @@
     <Content Include="Views\Role\Delete.cshtml" />
     <Content Include="Views\Shared\_LoginPartial2.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Health\Create.cshtml" />
+    <Content Include="Views\Health\Delete.cshtml" />
+    <Content Include="Views\Health\Details.cshtml" />
+    <Content Include="Views\Health\Edit.cshtml" />
+    <Content Include="Views\Health\Index.cshtml" />
+    <Content Include="Views\Health\Graph.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -356,6 +367,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904200041042_data5.resx">
       <DependentUpon>201904200041042_data5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904200104528_data6.resx">
+      <DependentUpon>201904200104528_data6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
