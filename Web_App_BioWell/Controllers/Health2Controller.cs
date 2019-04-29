@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -15,30 +14,32 @@ using Web_App_BioWell.Models;
 
 namespace Web_App_BioWell.Controllers
 {
-    public class HealthController : Controller
+    public class Health2Controller : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private UserManager<ApplicationUser> manager;
 
-        public HealthController()
+        public Health2Controller()
         {
             manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
         }
 
-        // GET: Health
-        public async Task<ActionResult> Index()
+        // GET: Health2
+        public ActionResult Index()
         {
-            return View(await db.HealthData.ToListAsync());
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+
+            return View(db.HealthData.ToList().Where(req => req.PatientId == currentUser.Id));
         }
 
-        // GET: Health/Details/5
-        public async Task<ActionResult> Details(int? id)
+        // GET: Health2/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HealthData healthData = await db.HealthData.FindAsync(id);
+            HealthData healthData = db.HealthData.Find(id);
             if (healthData == null)
             {
                 return HttpNotFound();
@@ -46,18 +47,18 @@ namespace Web_App_BioWell.Controllers
             return View(healthData);
         }
 
-        // GET: Health/Create
+        // GET: Health2/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Health/Create
+        // POST: Health2/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "DataId,PatientId,DataDate,DataWeight,DataBmi")] HealthData healthData)
+        public ActionResult Create([Bind(Include = "DataId,PatientId,DataDate,DataWeight,DataBmi")] HealthData healthData)
         {
             if (ModelState.IsValid)
             {
@@ -65,21 +66,21 @@ namespace Web_App_BioWell.Controllers
                 healthData.PatientId = currentUser.Id;
 
                 db.HealthData.Add(healthData);
-                await db.SaveChangesAsync();
+                db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
             return View(healthData);
         }
 
-        // GET: Health/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        // GET: Health2/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HealthData healthData = await db.HealthData.FindAsync(id);
+            HealthData healthData = db.HealthData.Find(id);
             if (healthData == null)
             {
                 return HttpNotFound();
@@ -87,30 +88,30 @@ namespace Web_App_BioWell.Controllers
             return View(healthData);
         }
 
-        // POST: Health/Edit/5
+        // POST: Health2/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "DataId,PatientId,DataDate,DataWeight,DataBmi")] HealthData healthData)
+        public ActionResult Edit([Bind(Include = "DataId,PatientId,DataDate,DataWeight,DataBmi")] HealthData healthData)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(healthData).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(healthData);
         }
 
-        // GET: Health/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        // GET: Health2/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HealthData healthData = await db.HealthData.FindAsync(id);
+            HealthData healthData = db.HealthData.Find(id);
             if (healthData == null)
             {
                 return HttpNotFound();
@@ -118,14 +119,14 @@ namespace Web_App_BioWell.Controllers
             return View(healthData);
         }
 
-        // POST: Health/Delete/5
+        // POST: Health2/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            HealthData healthData = await db.HealthData.FindAsync(id);
+            HealthData healthData = db.HealthData.Find(id);
             db.HealthData.Remove(healthData);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -137,7 +138,6 @@ namespace Web_App_BioWell.Controllers
             }
             base.Dispose(disposing);
         }
-
         // GET: Home
         public ActionResult Graph()
         {
@@ -147,11 +147,34 @@ namespace Web_App_BioWell.Controllers
         public ContentResult JSON()
         {
             List<DataPoint> dataPoints = new List<DataPoint>();
+            List<DataPoint> dataPoints2 = new List<DataPoint>();
+
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+            List<HealthData> UData =new List<HealthData>(db.HealthData.ToList().Where(req => req.PatientId == currentUser.Id));
+
+            DateTime[] dates = UData.Select(req => req.DataDate).ToArray();
+            Double[] weights = UData.Select(req => req.DataWeight).ToArray();
+            Double[] bmi = UData.Select(req => req.DataBmi).ToArray();
+
+
+            //DateTime compareTo = new DateTime(1970, 1, 1, 0, 0, 0);
+            //for (int i = 0; i < weights.Length; i++)
+            //{
+            //    long elapsedTicks = dates[i].Ticks - compareTo.Ticks;
+            //    TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
+
+            //    dataPoints.Add(new DataPoint(elapsedSpan.Milliseconds, weights[i]));
+            //}
+
+            for (int i = 0; i < weights.Length; i++)
+            {
+                dataPoints.Add(new DataPoint(dates[i], weights[i], bmi[i]));
+                
+            }
 
 
 
-            //dataPoints.Add(new DataPoint(1513621800000, 146));
-
+            //dataPoints.Add(new DataPoint(1482604200000, 146));
 
 
             /*The JavaScript Date() is based on a time value that is milliseconds since 
@@ -163,7 +186,7 @@ namespace Web_App_BioWell.Controllers
             //double y = 86400000;
             //dataPoints.Add(new DataPoint(x + y, 280));
 
-            //dataPoints.Add(new DataPoint(1481999400000, 290));
+            //dataPoints.Add(new DataPoint(1496514600000, 290));
 
 
 

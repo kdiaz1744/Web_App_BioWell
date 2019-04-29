@@ -190,7 +190,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\GraphController.cs" />
-    <Compile Include="Controllers\HealthController.cs" />
+    <Compile Include="Controllers\Health2Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
@@ -319,12 +319,12 @@
     <Content Include="Views\Role\Delete.cshtml" />
     <Content Include="Views\Shared\_LoginPartial2.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
-    <Content Include="Views\Health\Create.cshtml" />
-    <Content Include="Views\Health\Delete.cshtml" />
-    <Content Include="Views\Health\Details.cshtml" />
-    <Content Include="Views\Health\Edit.cshtml" />
-    <Content Include="Views\Health\Index.cshtml" />
-    <Content Include="Views\Health\Graph.cshtml" />
+    <Content Include="Views\Health2\Create.cshtml" />
+    <Content Include="Views\Health2\Delete.cshtml" />
+    <Content Include="Views\Health2\Details.cshtml" />
+    <Content Include="Views\Health2\Edit.cshtml" />
+    <Content Include="Views\Health2\Index.cshtml" />
+    <Content Include="Views\Health2\Graph.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
