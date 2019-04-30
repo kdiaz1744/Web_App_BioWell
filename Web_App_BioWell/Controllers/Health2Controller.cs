@@ -138,7 +138,7 @@ namespace Web_App_BioWell.Controllers
             }
             base.Dispose(disposing);
         }
-        // GET: Home
+        // GET: Home for 
         public ActionResult GraphWeight()
         {
             return View();
@@ -151,49 +151,24 @@ namespace Web_App_BioWell.Controllers
 
         public ContentResult JSON()
         {
+            //Creating dataPoint list so it can be sent to view
             List<DataPoint> dataPoints = new List<DataPoint>();
-            List<DataPoint> dataPoints2 = new List<DataPoint>();
 
+            //These are the lines of code that will help me filter out value results on User ID
             var currentUser = manager.FindById(User.Identity.GetUserId());
             List<HealthData> UData =new List<HealthData>(db.HealthData.ToList().Where(req => req.PatientId == currentUser.Id));
 
+            //creating arrays full of database values that will be put into dataPoint list
             DateTime[] dates = UData.Select(req => req.DataDate).ToArray();
             Double[] weights = UData.Select(req => req.DataWeight).ToArray();
             Double[] bmi = UData.Select(req => req.DataBmi).ToArray();
 
-
-            //DateTime compareTo = new DateTime(1970, 1, 1, 0, 0, 0);
-            //for (int i = 0; i < weights.Length; i++)
-            //{
-            //    long elapsedTicks = dates[i].Ticks - compareTo.Ticks;
-            //    TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
-
-            //    dataPoints.Add(new DataPoint(elapsedSpan.Milliseconds, weights[i]));
-            //}
-
+            //Populating List
             for (int i = 0; i < weights.Length; i++)
             {
                 dataPoints.Add(new DataPoint(dates[i], weights[i], bmi[i]));
                 
             }
-
-
-
-            //dataPoints.Add(new DataPoint(1482604200000, 146));
-
-
-            /*The JavaScript Date() is based on a time value that is milliseconds since 
-             midnight January 1, 1970, UTC.
-             * A day holds 86,400,000 milliseconds.
-             December 17th,2018 is 1545071400000*/
-
-            //double x = 1481999400000;
-            //double y = 86400000;
-            //dataPoints.Add(new DataPoint(x + y, 280));
-
-            //dataPoints.Add(new DataPoint(1496514600000, 290));
-
-
 
             JsonSerializerSettings _jsonSetting = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
             return Content(JsonConvert.SerializeObject(dataPoints, _jsonSetting), "application/json");

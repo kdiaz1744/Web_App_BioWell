@@ -3,72 +3,11 @@
     ViewBag.Title = "BMI Progress";
 }
 
-<h2>GraphBMI</h2>
+<h2>BMI Progress</h2>
 
 <!DOCTYPE HTML>
 <html>
 <head>
-    <script>
-        window.onload = function () {
-
-            var dataPoints = [];
-
-            var chart = new CanvasJS.Chart("chartContainer", {
-                animationEnabled: true,
-                zoomEnabled: true,
-                subtitles: [
-                    {
-                        text: "Click and drag on graph to Zoom"
-                    }
-                ],
-                theme: "light2",
-                title: {
-                    text: "Weight History"
-                },
-                axisY: {
-                    title: "Weight in Pounds",
-                    titleFontSize: 24,
-                    includeZero: false,
-                    //prefix: "$",
-                    suffix: "lb",
-                    crosshair: {
-                        enabled: true,
-                        //valueFormatString: "#,##0.##lb",
-                        snapToDataPoint: true
-                    }
-                },
-                axisX: {
-                    crosshair: {
-                        enabled: true,
-                        snapToDataPoint: true
-                    }
-                },
-                data: [{
-                    type: "line",
-                    yValueFormatString: "#,##0.##lb",
-                    //xValueType: "dateTime",
-                    xValueFormatString: "MMM DD YYYY",
-                    dataPoints: dataPoints
-                }]
-            });
-
-            function addData(data) {
-                for (var i = 0; i < data.length; i++) {
-                    dataPoints.push({
-                        //x: new Date(Date.parse(data[i].x)),
-                        x: new Date(data[i].x),
-                        //x: data[i].x,
-                        y: data[i].y
-                    });
-                }
-                chart.render();
-
-            }
-
-            $.getJSON("/Health2/json", addData);
-
-        }
-    </script>
     <script>
         window.onload = function () {
 
@@ -90,11 +29,8 @@
                     title: "BMI",
                     titleFontSize: 24,
                     includeZero: false,
-                    //prefix: "$",
-                    suffix: "lb",
                     crosshair: {
                         enabled: true,
-                        //valueFormatString: "#,##0.##lb",
                         snapToDataPoint: true
                     }
                 },
@@ -107,7 +43,6 @@
                 data: [{
                     type: "line",
                     yValueFormatString: "#,##0.##",
-                    //xValueType: "dateTime",
                     xValueFormatString: "MMM DD YYYY",
                     dataPoints: dataPoints
                 }]
@@ -116,20 +51,10 @@
             function addData(data) {
                 for (var i = 0; i < data.length; i++) {
                     dataPoints.push({
-                        //x: new Date(Date.parse(data[i].x)),
                         x: new Date(data[i].x),
-                        //x: data[i].x,
                         y: data[i].y2
                     });
                 }
-                //for (var i = 0; i < data.length; i++) {
-                //    dataPoints.push({
-                //        //x: new Date(Date.parse(data[i].x)),
-                //        x: new Date(data[i].x),
-                //        //x: data[i].x,
-                //        y: data[i].y2,
-                //    });
-                //}
                 chart.render();
 
             }

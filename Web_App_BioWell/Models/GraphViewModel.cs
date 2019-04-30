@@ -23,9 +23,9 @@ namespace Web_App_BioWell.Models
     {
         public DataPoint(DateTime x, double y, double y2)
         {
-            this.X = x;
-            this.Y = y;
-            this.Y2 = y2;
+            this.X = x; //Will hold data dates
+            this.Y = y; //Will hold data Weight
+            this.Y2 = y2; //Will hold data BMI
         }
 
         //Explicitly setting the name to be used while serializing to JSON.
