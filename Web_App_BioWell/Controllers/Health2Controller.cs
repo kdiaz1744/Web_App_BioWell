@@ -139,7 +139,12 @@ namespace Web_App_BioWell.Controllers
             base.Dispose(disposing);
         }
         // GET: Home
-        public ActionResult Graph()
+        public ActionResult GraphWeight()
+        {
+            return View();
+        }
+
+        public ActionResult GraphBMI()
         {
             return View();
         }
@@ -193,5 +198,7 @@ namespace Web_App_BioWell.Controllers
             JsonSerializerSettings _jsonSetting = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
             return Content(JsonConvert.SerializeObject(dataPoints, _jsonSetting), "application/json");
         }
+
+
     }
 }
