@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="u250807938_db1Model.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Circumferences">
+          <Key>
+            <PropertyRef Name="Date" />
+          </Key>
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Patient_Username" Type="varchar" MaxLength="50" />
+          <Property Name="Neck" Type="double" />
+          <Property Name="Wrist" Type="double" />
+          <Property Name="Hip" Type="double" />
+          <Property Name="Thigh" Type="double" />
+          <Property Name="Chest" Type="double" />
+          <Property Name="Arm" Type="double" />
+          <Property Name="Waist" Type="double" />
+          <Property Name="Calf" Type="double" />
+        </EntityType>
+        <EntityType Name="Doctors">
+          <Key>
+            <PropertyRef Name="Doctor_Username" />
+          </Key>
+          <Property Name="Doctor_Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="First_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Last_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Street" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="Zip" Type="varchar" MaxLength="5" />
+          <Property Name="Phone" Type="varchar" MaxLength="10" />
+          <Property Name="HASH" Type="text" />
+          <Property Name="SALT" Type="varbinary" MaxLength="512" />
+          <Property Name="Password" Type="varchar" MaxLength="512" />
+        </EntityType>
+        <EntityType Name="Measurements">
+          <Key>
+            <PropertyRef Name="Date" />
+          </Key>
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Patient_Username" Type="varchar" MaxLength="50" />
+          <Property Name="Height" Type="double" />
+          <Property Name="Weight" Type="double" />
+          <Property Name="Body_Mass_Index" Type="double" />
+          <Property Name="Body_Fat_Percentage" Type="double" />
+          <Property Name="Fat_Free_Percentage" Type="double" />
+        </EntityType>
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="messageId" />
+          </Key>
+          <Property Name="messageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="doctorUser" Type="text" Nullable="false" />
+          <Property Name="patientUser" Type="text" Nullable="false" />
+          <Property Name="subject" Type="text" />
+          <Property Name="messageBody" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Patients">
+          <Key>
+            <PropertyRef Name="Patients_Username" />
+          </Key>
+          <Property Name="Patients_Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Doctor_Username" Type="varchar" MaxLength="50" />
+          <Property Name="First_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Last_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Street" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="Zip" Type="varchar" MaxLength="5" />
+          <Property Name="Phone" Type="varchar" MaxLength="10" />
+          <Property Name="Password_Hash" Type="varchar" MaxLength="250" />
+          <Property Name="Salt" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityContainer Name="u250807938_db1ModelStoreContainer">
+          <EntitySet Name="Circumferences" EntityType="Self.Circumferences" Schema="u250807938_db1" store:Type="Tables" />
+          <EntitySet Name="Doctors" EntityType="Self.Doctors" Schema="u250807938_db1" store:Type="Tables" />
+          <EntitySet Name="Measurements" EntityType="Self.Measurements" Schema="u250807938_db1" store:Type="Tables" />
+          <EntitySet Name="Messages" EntityType="Self.Messages" Schema="u250807938_db1" store:Type="Tables" />
+          <EntitySet Name="Patients" EntityType="Self.Patients" Schema="u250807938_db1" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="u250807938_db1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Circumference">
+          <Key>
+            <PropertyRef Name="Date" />
+          </Key>
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Patient_Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Neck" Type="Double" />
+          <Property Name="Wrist" Type="Double" />
+          <Property Name="Hip" Type="Double" />
+          <Property Name="Thigh" Type="Double" />
+          <Property Name="Chest" Type="Double" />
+          <Property Name="Arm" Type="Double" />
+          <Property Name="Waist" Type="Double" />
+          <Property Name="Calf" Type="Double" />
+        </EntityType>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="Doctor_Username" />
+          </Key>
+          <Property Name="Doctor_Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Street" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Zip" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="HASH" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="SALT" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Measurement">
+          <Key>
+            <PropertyRef Name="Date" />
+          </Key>
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Patient_Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Height" Type="Double" />
+          <Property Name="Weight" Type="Double" />
+          <Property Name="Body_Mass_Index" Type="Double" />
+          <Property Name="Body_Fat_Percentage" Type="Double" />
+          <Property Name="Fat_Free_Percentage" Type="Double" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="messageId" />
+          </Key>
+          <Property Name="messageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="doctorUser" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="patientUser" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="subject" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="messageBody" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="Patients_Username" />
+          </Key>
+          <Property Name="Patients_Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Doctor_Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Street" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Zip" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Password_Hash" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Salt" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="sql200_db1Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Circumferences" EntityType="Self.Circumference" />
+          <EntitySet Name="Doctors" EntityType="Self.Doctor" />
+          <EntitySet Name="Measurements" EntityType="Self.Measurement" />
+          <EntitySet Name="Messages" EntityType="Self.Message" />
+          <EntitySet Name="Patients" EntityType="Self.Patient" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="u250807938_db1ModelStoreContainer" CdmEntityContainer="sql200_db1Entities">
+          <EntitySetMapping Name="Circumferences">
+            <EntityTypeMapping TypeName="u250807938_db1Model.Circumference">
+              <MappingFragment StoreEntitySet="Circumferences">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Patient_Username" ColumnName="Patient_Username" />
+                <ScalarProperty Name="Neck" ColumnName="Neck" />
+                <ScalarProperty Name="Wrist" ColumnName="Wrist" />
+                <ScalarProperty Name="Hip" ColumnName="Hip" />
+                <ScalarProperty Name="Thigh" ColumnName="Thigh" />
+                <ScalarProperty Name="Chest" ColumnName="Chest" />
+                <ScalarProperty Name="Arm" ColumnName="Arm" />
+                <ScalarProperty Name="Waist" ColumnName="Waist" />
+                <ScalarProperty Name="Calf" ColumnName="Calf" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doctors">
+            <EntityTypeMapping TypeName="u250807938_db1Model.Doctor">
+              <MappingFragment StoreEntitySet="Doctors">
+                <ScalarProperty Name="Doctor_Username" ColumnName="Doctor_Username" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="HASH" ColumnName="HASH" />
+                <ScalarProperty Name="SALT" ColumnName="SALT" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Measurements">
+            <EntityTypeMapping TypeName="u250807938_db1Model.Measurement">
+              <MappingFragment StoreEntitySet="Measurements">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Patient_Username" ColumnName="Patient_Username" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Body_Mass_Index" ColumnName="Body_Mass_Index" />
+                <ScalarProperty Name="Body_Fat_Percentage" ColumnName="Body_Fat_Percentage" />
+                <ScalarProperty Name="Fat_Free_Percentage" ColumnName="Fat_Free_Percentage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="u250807938_db1Model.Message">
+              <MappingFragment StoreEntitySet="Messages">
+                <ScalarProperty Name="messageId" ColumnName="messageId" />
+                <ScalarProperty Name="doctorUser" ColumnName="doctorUser" />
+                <ScalarProperty Name="patientUser" ColumnName="patientUser" />
+                <ScalarProperty Name="subject" ColumnName="subject" />
+                <ScalarProperty Name="messageBody" ColumnName="messageBody" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patients">
+            <EntityTypeMapping TypeName="u250807938_db1Model.Patient">
+              <MappingFragment StoreEntitySet="Patients">
+                <ScalarProperty Name="Patients_Username" ColumnName="Patients_Username" />
+                <ScalarProperty Name="Doctor_Username" ColumnName="Doctor_Username" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Password_Hash" ColumnName="Password_Hash" />
+                <ScalarProperty Name="Salt" ColumnName="Salt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
